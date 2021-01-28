@@ -493,6 +493,20 @@ void ESPStepperMotorServer_CLI::cmdMoveTo(char *cmd, char *args)
     this->getParameterValue(args, "v", value);
     if (value[0] != NULLCHAR)
     {
+      char speed[20];
+      this->getParameterValue(args, "s", speed);
+      if (speed[0] == NULLCHAR)
+      {
+        this->serverRef->getCurrentServerConfiguration()->getStepperConfiguration(stepperid)->getFlexyStepper()->setSpeedInStepsPerSecond((String(speed).toFloat()));
+      }
+      
+      char accel[20];
+      this->getParameterValue(args, "a", accel);
+      if (accel[0] == NULLCHAR)
+      {
+        this->serverRef->getCurrentServerConfiguration()->getStepperConfiguration(stepperid)->getFlexyStepper()->setAccelerationInStepsPerSecondPerSecond((String(accel).toFloat()));
+      }
+      
       char unit[10];
       this->getParameterValue(args, "u", unit);
       if (unit[0] == NULLCHAR || strcmp(unit, "steps") == 0)
@@ -540,6 +554,24 @@ void ESPStepperMotorServer_CLI::cmdMoveBy(char *cmd, char *args)
 #ifndef ESPStepperMotorServer_COMPILE_NO_DEBUG
       ESPStepperMotorServer_Logger::logDebugf("cmdMoveBy called with v = %s\n", value);
 #endif
+      
+      
+      
+      char speed[20];
+      this->getParameterValue(args, "s", speed);
+      if (speed[0] == NULLCHAR)
+      {
+        this->serverRef->getCurrentServerConfiguration()->getStepperConfiguration(stepperid)->getFlexyStepper()->setSpeedInStepsPerSecond((String(speed).toFloat()));
+      }
+      
+      char accel[20];
+      this->getParameterValue(args, "a", accel);
+      if (accel[0] == NULLCHAR)
+      {
+        this->serverRef->getCurrentServerConfiguration()->getStepperConfiguration(stepperid)->getFlexyStepper()->setAccelerationInStepsPerSecondPerSecond((String(accel).toFloat()));
+      }
+      
+      
       char unit[10];
       this->getParameterValue(args, "u", unit);
       if (unit[0] == NULLCHAR || strcmp(unit, "steps") == 0)
