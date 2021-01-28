@@ -321,8 +321,8 @@ The following commands are available:
 
 <command> [<shortcut>]: <description>
 help [h]:               show a list of all available commands
-moveby [mb]*:           move by an specified amount of units. requires the id of the stepper to move, the amount pf movement and also optional the unit for the movement (mm, steps, revs). If no unit is specified steps will be assumed as unit. E.g. mb=0&v:-100&u:mm to move the stepper with id 0 by -100 mm
-moveto [mt]*:           move to an absolute position. requires the id of the stepper to move, the amount pf movement and also optional the unit for the movement (mm, steps, revs). If no unit is specified steps will be assumed as unit. E.g. mt=0&v:100&u:revs to move the stepper with id 0 to the absolute position at 100 revolutions
+moveby [mb]*:           move by an specified amount of units. requires the id of the stepper to move, the amount pf movement and also optional the unit for the movement (mm, steps, revs). If no unit is specified steps will be assumed as unit. E.g. mb=0&v:-100&u:mm to move the stepper with id 0 by -100 mm, optional parameters are speed s and acceleration a E.g. mb=0&v:-100&u:mm&s:3000&a:1000
+moveto [mt]*:           move to an absolute position. requires the id of the stepper to move, the amount pf movement and also optional the unit for the movement (mm, steps, revs). If no unit is specified steps will be assumed as unit. E.g. mt=0&v:100&u:revs to move the stepper with id 0 to the absolute position at 100 revolutions. Optional parameters are speed s and acceleration a E.g. mt=0&v:-100&u:revs&s:3000&a:1000
 config [c]:             print the current configuration to the console as JSON formatted string
 emergencystop [es]:     trigger emergency stop for all connected steppers. This will clear all target positions and stop the motion controller module immediately. In order to proceed normal operation after this command has been issued, you need to call the revokeemergencystop [res] command
 revokeemergencystop [res]:      revoke a previously triggered emergency stop. This must be called before any motions can proceed after a call to the emergencystop command
